@@ -10,12 +10,12 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class HomePage {
 
-  usuario: string;
-  email: string;
+  usuario: string = "";
+  email: string = "";
   pass: string;
 
-  pass1: string;
-  pass2: string;
+  pass1: string = "";
+  pass2: string = "";
 
   esUsuario: boolean = true;
 
@@ -66,5 +66,51 @@ export class HomePage {
       this.email = "";
       this.pass = "";
     }*/
+  }
+
+  registrar() {
+    console.log(this.usuario, this.email, this.pass1, this.pass2);
+
+    this.usuarios.forEach(element => {
+      for (var i = 0; i < 5; i++) {
+        if (element[i].nombre == this.usuario) {
+          //USUARIO REPETIDO
+          let alert = this.alertCtrl.create({
+            title: 'Usuario Repetido',
+            subTitle: 'Por favor seleccione otro nombre de usuario para ingresar al sistema',
+            buttons: ['OK']
+          });
+          alert.present();
+          this.usuario = "";
+          return;
+        }
+      }
+      //CONTRASEÑAS NO IDENTICAS
+      if (this.pass1 != this.pass2) {
+        let alert = this.alertCtrl.create({
+          title: 'Error en la contraseña',
+          subTitle: 'Las contraseñas ingresadas no son iguales, por favor vuelva a ingresarlas',
+          buttons: ['OK']
+        });
+        alert.present();
+        this.pass1 = "";
+        this.pass2 = "";
+      }
+      //CAMPOS VACIOS
+      if (this.usuario == "" || this.email == "" || this.pass1 == "" || this.pass2 == "") {
+        let alert = this.alertCtrl.create({
+          title: 'Campos vacios',
+          subTitle: 'Por favor complete la totalidad de los campos a fin de poder registrarse',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+      //VERIFICACIONES CUMPLIDAS
+      this.usuarios.push({
+        nombre: this.usuario,
+        clave: this.pass1,
+      })
+
+    })
   }
 }
