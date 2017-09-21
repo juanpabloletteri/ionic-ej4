@@ -1,12 +1,77 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Relevamiento Visual</ion-title>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Relevamiento Visual
+    </ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top color="dark">
+    <ion-segment [(ngModel)]="cosas">
+      <ion-segment-button value="lindas">
+        Cosas Lindas
+      </ion-segment-button>
+      <ion-segment-button value="feas">
+        Cosas Feas
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <button ion-button color="secondary" round icon-start>
+    <ion-icon name='camera' ></ion-icon>
+    Camara
+  </button><br>
 
 </ion-header>
 
+<ion-content>
+  <div [ngSwitch]="cosas">
+    <ion-list *ngSwitchCase="'lindas'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/01.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 01</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/02.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 02</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/03.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 03</h2>
+      </ion-item>
+    </ion-list>
 
-<ion-content padding>
+    <ion-list *ngSwitchCase="'feas'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/04.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 04</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/05.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 05</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/01.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 01</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/02.jpg">
+        </ion-thumbnail>
+        <h2>Imagen 02</h2>
+      </ion-item>
+    </ion-list>
 
+  </div>
 </ion-content>
