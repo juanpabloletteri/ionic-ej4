@@ -95,6 +95,7 @@ export class HomePage {
         alert.present();
         this.pass1 = "";
         this.pass2 = "";
+        return;
       }
       //CAMPOS VACIOS
       if (this.usuario == "" || this.email == "" || this.pass1 == "" || this.pass2 == "") {
@@ -104,10 +105,11 @@ export class HomePage {
           buttons: ['OK']
         });
         alert.present();
+        return;
       }
       //VERIFICACIONES CUMPLIDAS
       this.usuarios.push({
-        nombre: this.usuario,
+        $key: this.usuario,
         clave: this.pass1,
       })
 
