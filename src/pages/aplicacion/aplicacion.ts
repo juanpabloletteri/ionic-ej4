@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the AplicacionPage page.
@@ -15,7 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AplicacionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  usuario: string;
+  email: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+
+    this.usuario = this.navParams.get('usuario');
+    this.email = this.navParams.get('email');
+
+    let loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      duration: 2500
+    });
+    loader.present();
+
   }
 
   ionViewDidLoad() {

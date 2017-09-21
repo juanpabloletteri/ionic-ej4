@@ -18,7 +18,7 @@ export class HomePage {
   pass2: string;
 
   esUsuario: boolean = true;
-  
+
   usuarios: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, db: AngularFireDatabase, ) {
@@ -30,11 +30,7 @@ export class HomePage {
       for (var i = 0; i < 5; i++) {
         if (element[i].nombre == this.usuario && element[i].clave == this.pass) {
           //SE ENCONTRO USUARIO
-          let alert = this.alertCtrl.create({
-            title: 'Bienvenido: ' + this.usuario,
-            buttons: ['OK']
-          });
-          alert.present();
+
           //Redirijo a la pagina correspondiente
           this.navCtrl.push(AplicacionPage, { "usuario": this.usuario, "email": this.email });
           return;
