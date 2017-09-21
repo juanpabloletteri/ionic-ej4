@@ -8,33 +8,55 @@
 </ion-header>
 
 <ion-content padding>
-  
-    <div *ngIf="showLogin">
-      <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-      </ion-item>
-    </div>
-  
-    <div *ngIf="!showLogin">
-  
-      <ion-item>
-        <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
-      </ion-item>
-    </div>
-  
-    <button ion-button color="primary" full (click)="login()">Ingresar</button>
-    <button ion-button color="secondary" full >Registrar</button>
-  
-  </ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Es usuario?</ion-label>
+      <ion-toggle value="foo" checked="true" [(ngModel)]="esUsuario"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+
+  <div *ngIf="esUsuario">
+    <ion-item>
+      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
+    </ion-item>
+    <br>
+    <button ion-button color="primary" icon-end (click)="login()">
+    Ingresar
+    <ion-icon name='arrow-forward'></ion-icon>
+  </button>
+
+  </div>
+
+  <div *ngIf="!esUsuario">
+
+    <ion-item>
+      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="pass1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Confirme su Password" [(ngModel)]="pass2"></ion-input>
+    </ion-item>
+    <br>
+    <button ion-button color="secondary" icon-start>
+    <ion-icon name='people'></ion-icon>
+      Registrar
+  </button>
+
+  </div>
+
+</ion-content>
