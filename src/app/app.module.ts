@@ -10,6 +10,8 @@ import { AplicacionPage } from '../pages/aplicacion/aplicacion';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -47,6 +49,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

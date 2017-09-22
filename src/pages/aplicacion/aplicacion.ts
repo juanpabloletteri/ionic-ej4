@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, Platform } from 'ionic-angular';
 
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 /**
  * Generated class for the AplicacionPage page.
  *
@@ -21,7 +23,7 @@ export class AplicacionPage {
   cosas: string = "lindas";
   isAndroid: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController, platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController, platform: Platform, private camera: Camera) {
 
     this.isAndroid = platform.is('android');
 
@@ -38,6 +40,24 @@ export class AplicacionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AplicacionPage');
+  }
+
+  sacarFoto() {
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
   }
 
 }
