@@ -9,54 +9,75 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <ion-content padding>
 
-    <ion-item>
-      <ion-label>Es usuario?</ion-label>
-      <ion-toggle value="foo" checked="true" [(ngModel)]="esUsuario"></ion-toggle>
-    </ion-item>
+    <ion-list>
 
-  </ion-list>
+      <ion-item>
+        <ion-label>Es usuario?</ion-label>
+        <ion-toggle value="foo" checked="true" [(ngModel)]="esUsuario"></ion-toggle>
+      </ion-item>
 
-  <div *ngIf="esUsuario">
-    <ion-item>
-      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario" value="admin"></ion-input>
-    </ion-item>
+    </ion-list>
 
-    <ion-item>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="pass" value="11"></ion-input>
-    </ion-item>
-    <br>
-    <button ion-button color="primary" icon-end (click)="login()">
-    Ingresar
-    <ion-icon name='arrow-forward'></ion-icon>
-  </button>
+    <div *ngIf="esUsuario">
+      <ion-item>
+        <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
+      </ion-item>
 
-  </div>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="pass"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button color="primary" icon-end (click)="login()">
+            Ingresar
+            <ion-icon name='arrow-forward'></ion-icon>
+          </button>
 
-  <div *ngIf="!esUsuario">
+    </div>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
-    </ion-item>
+    <div *ngIf="!esUsuario">
 
-    <ion-item>
-      <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Usuario" [(ngModel)]="usuario"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="password" placeholder="Contraseña" [(ngModel)]="pass1"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="password" placeholder="Confirme su Contraseña" [(ngModel)]="pass2"></ion-input>
-    </ion-item>
-    <br>
-    <button ion-button color="secondary" icon-start (click)="registrar()">
-    <ion-icon name='people'></ion-icon>
-      Registrar
-  </button>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="pass1"></ion-input>
+      </ion-item>
 
-  </div>
+      <ion-item>
+        <ion-input type="password" placeholder="Confirme su Password" [(ngModel)]="pass2"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button color="secondary" icon-start>
+            <ion-icon name='people'></ion-icon>
+              Registrar
+          </button>
 
-</ion-content>
+    </div>
+
+    <ion-content class="card-background-page">
+      <ion-card>
+        <img src="assets/img/login.png" />
+        <div class="card-title">JUAN PABLO LETTERI</div>
+        <div class="card-subtitle">UTN FRA - 4B°</div>
+      </ion-card>
+    </ion-content>
+
+    <ion-fab left bottom>
+      <button ion-fab color="secondary"><ion-icon name="arrow-dropright"></ion-icon></button>
+      <ion-fab-list side="right">
+        <button ion-fab (click)="asignarUsuario('admin')">AD</button>
+        <button ion-fab (click)="asignarUsuario('invitado')">IN</button>
+        <button ion-fab (click)="asignarUsuario('usuario')">US</button>
+        <button ion-fab (click)="asignarUsuario('j1')">J1</button>
+        <button ion-fab (click)="asignarUsuario('j2')">J2</button>
+      </ion-fab-list>
+    </ion-fab>
+
+  </ion-content>
