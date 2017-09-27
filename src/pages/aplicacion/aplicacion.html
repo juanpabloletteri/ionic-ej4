@@ -5,6 +5,15 @@
     </ion-title>
   </ion-navbar>
 
+  <div style="display:flex; flex-direction:column;justify-content:center">
+      <button ion-button (click)="sacarFoto()">Lets take a picture!</button>
+  
+      <img [src]="base64Image"  *ngIf="base64Image"/>
+  
+      <button ion-button (click)="upload()" *ngIf="base64Image">Upload to Firebase!</button>
+      
+    </div>
+
   <ion-toolbar no-border-top color="dark">
     <ion-segment [(ngModel)]="cosas">
       <ion-segment-button value="lindas">

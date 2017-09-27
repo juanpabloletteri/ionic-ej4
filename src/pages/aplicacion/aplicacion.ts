@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, Platform } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import firebase from 'firebase';
 
 /**
  * Generated class for the AplicacionPage page.
@@ -22,6 +23,8 @@ export class AplicacionPage {
 
   cosas: string = "lindas";
   isAndroid: boolean = false;
+
+  base64Image:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController, platform: Platform, private camera: Camera) {
 
@@ -54,10 +57,37 @@ export class AplicacionPage {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       // Handle error
     });
+  }
+
+
+  upload() {
+    let storageRef = firebase.storage().ref();
+
+    const filename = Math.floor(Date.now() / 1000);
+
+    // Create a reference to 'images/todays-date.jpg'
+    const imageRef = storageRef.child(`images/${filename}.jpg`);
+
+    imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+      this.showSuccesfulUploadAlert();
+    });
+
+  }
+
+  showSuccesfulUploadAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Uploaded!',
+      subTitle: 'Picture is uploaded to Firebase',
+      buttons: ['OK']
+    });
+    alert.present();
+
+    // clear the previous photo data in the variable
+    this.base64Image = "";
   }
 
 }
