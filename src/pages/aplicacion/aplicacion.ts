@@ -24,7 +24,7 @@ export class AplicacionPage {
   cosas: string = "lindas";
   isAndroid: boolean = false;
 
-  base64Image:string;
+  base64Image: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController, platform: Platform, private camera: Camera) {
 
@@ -72,7 +72,7 @@ export class AplicacionPage {
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`images/${filename}.jpg`);
 
-    imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+    imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
       this.showSuccesfulUploadAlert();
     });
 
@@ -87,6 +87,10 @@ export class AplicacionPage {
     alert.present();
 
     // clear the previous photo data in the variable
+    this.base64Image = "";
+  }
+
+  cancelar() {
     this.base64Image = "";
   }
 

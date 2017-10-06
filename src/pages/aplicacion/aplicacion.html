@@ -6,13 +6,29 @@
   </ion-navbar>
 
   <div style="display:flex; flex-direction:column;justify-content:center">
-      <button ion-button (click)="sacarFoto()">Lets take a picture!</button>
-  
-      <img [src]="base64Image"  *ngIf="base64Image"/>
-  
-      <button ion-button (click)="upload()" *ngIf="base64Image">Upload to Firebase!</button>
-      
-    </div>
+    <button ion-button color="secondary" round icon-start (click)="sacarFoto()" *ngIf="!base64Image">
+      <ion-icon name='camera'></ion-icon>
+      Camara
+    </button>
+
+    <button ion-button color="primary" round icon-start (click)="upload()" *ngIf="base64Image">
+      <ion-icon name='cloud-upload'></ion-icon>
+      Subir Foto Linda
+    </button>
+
+    <button ion-button color="dark" round icon-start (click)="upload()" *ngIf="base64Image">
+      <ion-icon name='cloud-upload'></ion-icon>
+      Subir Foto Fea
+    </button>
+
+    <button ion-button color="danger" round icon-start (click)="cancelar()" *ngIf="base64Image">
+      <ion-icon name='exit'></ion-icon>
+      Cancelar
+    </button>
+
+    <img [src]="base64Image" *ngIf="base64Image" />
+
+  </div>
 
   <ion-toolbar no-border-top color="dark">
     <ion-segment [(ngModel)]="cosas">
@@ -24,11 +40,6 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-
-  <button ion-button color="secondary" round icon-start (click)="sacarFoto()">
-    <ion-icon name='camera' ></ion-icon>
-    Camara
-  </button><br>
 
 </ion-header>
 
